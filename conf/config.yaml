@@ -1,0 +1,20 @@
+#http port
+http_address: :3000
+
+#mysql
+mysql_net: tcp
+mysql_host: localhost:3306
+mysql_user: root
+mysql_password: 123456
+# 数据库名
+mysql_name: db
+mysql_location: Asia/Shanghai
+mysql_parse_time: true
+mysql_params: charset=utf8mb4,utf8
+
+# redis
+cache_address:  localhost:6379
+cache_password:
+
+#jwt signed key
+jwt_signed: b203283e743d6dcaadbeeef4e0da4fbe91afb7893c623eaf3e994769727a2978912e930766636b8ce246187de17382e10ca702677caa734143714dcb141c5f14

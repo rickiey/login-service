@@ -1,0 +1,10 @@
+.idea/
+vendor/
+_*
+*.test
+.DS_Store
+bin/
+tmp/*
+/cmd/login-service/main
+main
+test/

@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: organization-usecase
+  labels:
+    app: organization-usecase
+spec:
+  ports:
+  - name: presenter
+    protocol: TCP
+    port: 80
+    targetPort: 9091
+  - name: rpc
+    port: 9092
+    targetPort: 9092
+    protocol: TCP
+  selector:
+    app: organization-usecase
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: organization-usecase
+  name: organization-usecase
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: organization-usecase
+  template:
+    metadata:
+      labels:
+        app: organization-usecase
+    spec:
+      volumes:
+      - name: configmap-volume
+        configMap:
+          name: organization-conf
+      - name: tz-config
+        hostPath:
+          path: /usr/share/zoneinfo/Asia/Shanghai
+      containers:
+      - name: organization-usecase
+        image: registry.cn-shanghai.aliyuncs.com/icem/organization-service_ca06016-ca06016-dev:latest
+        command: ["/app"]
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9091
+          name: presenter
+        - containerPort: 9092
+          name: rpc
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
+        #   initialDelaySeconds: 30
+        #   timeoutSeconds: 30
+        volumeMounts:
+        - mountPath: /conf/
+          name: configmap-volume
+        - mountPath: /etc/localtime
+          name: tz-config
+      imagePullSecrets:
+      - name: regcred
