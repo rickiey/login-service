@@ -3,15 +3,17 @@ package usecase
 import (
 	"context"
 	"errors"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/jinzhu/gorm"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
+	"time"
+
 	"login-service/login"
 	"login-service/login/dto"
 	"login-service/models"
 	"login-service/utils/password"
-	"time"
+
+	"github.com/golang-jwt/jwt/v5"
+	"github.com/jinzhu/gorm"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 type LoginUsecase struct {
@@ -20,8 +22,7 @@ type LoginUsecase struct {
 	contextTimeout time.Duration
 }
 
-
-//  LoginUsecase 结构的指针（注意：是他的指针，不是这个结构体）实现了  LoginUsecase 接口
+// LoginUsecase 结构的指针（注意：是他的指针，不是这个结构体）实现了  LoginUsecase 接口
 func NewLoginUsecase(o login.Repository, c login.CacheRepository, timeout time.Duration) *LoginUsecase {
 	var et time.Duration
 	if timeout.Seconds() <= 0 {

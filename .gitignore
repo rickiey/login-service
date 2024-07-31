@@ -8,3 +8,4 @@ tmp/*
 /cmd/login-service/main
 main
 test/
+.history
