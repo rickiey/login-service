@@ -1,7 +1,7 @@
 package helper
 
 import (
-	"gopkg.in/go-playground/validator.v9"
+	"github.com/go-playground/validator/v10"
 )
 
 var validate = validator.New()

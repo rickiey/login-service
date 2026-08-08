@@ -5,7 +5,7 @@ package repository
 
 import (
 	"errors"
-	"github.com/garyburd/redigo/redis"
+	"github.com/gomodule/redigo/redis"
 	"github.com/sirupsen/logrus"
 	"login-service/helper"
 	"log"
