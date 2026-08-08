@@ -4,8 +4,8 @@
 package repository
 
 import (
-	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 	"login-service/login"
 	. "login-service/models"
 	"time"
@@ -43,7 +43,7 @@ func (r *mysqlUserRepository) FindByUserId(userId int64) (*UserInfo, error) {
 
 func (r *mysqlUserRepository) FindByPhone(phone string) (*UserInfo, error) {
 	u := UserInfo{}
-	err := r.Conn.Debug().Model(u.TableName()).Find(&u, "deleted=0 AND (email=? or phone=? )", phone, phone).Error
+	err := r.Conn.Debug().Table(u.TableName()).Find(&u, "deleted=0 AND (email=? or phone=? )", phone, phone).Error
 	if err != nil {
 		return &u, err
 	}

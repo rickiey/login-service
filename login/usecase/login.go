@@ -11,9 +11,9 @@ import (
 	"login-service/utils/password"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
+	"gorm.io/gorm"
 )
 
 type LoginUsecase struct {
