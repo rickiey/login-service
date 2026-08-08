@@ -1,5 +1,5 @@
 # 指定基础镜像
-FROM alpine:3.11
+FROM alpine:3.21
 
 
 # 维护者信息
@@ -8,7 +8,7 @@ MAINTAINER yangrui
 
 # DESCRIPTION "更改时区，替换apk源为USTC"
 
-LABEL alpine_version=3.11.3
+LABEL alpine_version=3.21.3
 LABEL zoneinfo="Asia/Shanghai"
 LABEL apk_repositoris="mirrors.ustc.edu.cn"
 
